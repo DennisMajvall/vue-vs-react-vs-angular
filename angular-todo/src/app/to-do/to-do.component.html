@@ -1,0 +1,19 @@
+<div class="ToDo">
+	<img class="Logo" alt="Angular Logo" src="assets/Logo.svg" alt="image">
+	<h1 class="ToDo-Header">Angular To Do</h1>
+	<div class="ToDo-Container">
+		<div class="ToDo-Content">
+			<div *ngFor="let toDo of toDos; index as i">
+				<ToDoItem [toDo]="toDo" (deleted)="deleteItem(i)"></ToDoItem>
+			</div>
+		</div>
+
+		<form (ngSubmit)="addItem()" #todoForm="ngForm">
+			<div class="form-group">
+				<input type="text" class="form-control" id="name" [(ngModel)]="input" (keyup)="onKeyUp()" name="name" #name="ngModel" required>
+				<div *ngIf="hasBeenEdited && !input">Name is required</div>
+			</div>
+			<button type="submit" class="ToDo-Add">+</button>
+		</form>
+	</div>
+</div>
